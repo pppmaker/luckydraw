@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뽑기 이벤트222</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <main class="wrap">
+        <h1>E</h1>
+        <section class="layout">
+            <article class="left">
+                <form id="addForm" method="post">
+                    <input type="text" placeholder="참여자명을 입력해주세요." required>
+                    <button type="submit">등록</button>
+                </form>
+                <ul id="eventParticipant"></ul>
+            </article>
+    
+            <article class="right">
+                <form id="lotteryForm" method="post">
+                    <input type="number" placeholder="당첨자 수">
+                    <button id="lotteryButton" type="submit">게임 시작</button>
+                </form>
+                <div id="winnerArea" class="winner_section">
+                    <h3>축하합니다.</h3>
+                </div>
+            </article>
+        </section>
+    </main>
+    <script src="./script.js"></script>
+    <script src="./storage.js"></script>
+</body>
+</html>
