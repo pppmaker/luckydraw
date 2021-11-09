@@ -12,13 +12,21 @@ const PART_KEY = "partList"
 
 let participantArray = [];
 let randomNum;
+let randomArray;
+
+
+function saveParticipantList(){
+    localStorage.setItem(PART_KEY, JSON.stringify(participantArray));
+    //console.log(participantArray);
+}
+
 
 function drawLots(event){
     event.preventDefault();
-    let randomArray = [];
+    randomArray = [];
     winnerArea.innerHTML = '';
     
-    for(let i = 0; i < winnerNum.value; i++){
+    for(let i = 0; i < Number(winnerNum.value); i++){ // winnerNum.value 숫자만큼 당첨자 나오기
         randomNum = Math.floor(Math.random() * participantArray.length);
         if (randomArray.indexOf(participantArray[randomNum]) === -1) { // 중복되지 않을 경우
             randomArray.push(participantArray[randomNum]);
@@ -33,40 +41,41 @@ function drawLots(event){
 function makeWinnerSection(winnerArray){
     winnerArray.forEach((winners) => {
         let p = document.createElement('p');
-        p.innerText = winners;
-        winnerArea.append(p);
+        p.innerText = winners.text;
+        winnerArea.appendChild(p);
     });
 }
 
-function saveParticipantList(){
-    localStorage.setItem(PART_KEY, JSON.stringify(participantArray));
-    //console.log(participantArray);
-}
-
-function makeParticipantList(){
-    let li = '';
-    participantArray.forEach((participant,index) => {
-        li = li + `<li>${participant} <button type="button" onclick="deletePati(event, ${index})">X</button></li>`;
-        eventParticipant.innerHTML = li;
-    })
-
-}
-
 function deletePati(event, index){
-    console.log(event);
-    console.log(index);
-    event.path[1].remove();
-    participantInput.value = '';
-    participantArray.splice(index,1);
+    let targetLi = event.target.parentElement;
+    targetLi.remove();
+    participantArray = participantArray.filter(ptc => ptc.id !== parseInt(targetLi.id));
     saveParticipantList();
+}
+
+
+function makeParticipantList(newTodoInfo){
+    const li = document.createElement('li');
+    li.id = newTodoInfo.id;
+    li.innerText = newTodoInfo.text;
+    const button = document.createElement('button');
+    button.innerText ="삭제"
+    li.appendChild(button);
+    button.addEventListener("click",deletePati);
+    eventParticipant.appendChild(li);
 }
 
 
 function addParticipant(event){
     event.preventDefault();
-    participantArray.push(participantInput.value);
+    const newTodo = participantInput.value;
+    const newTodoObj = {
+        text: newTodo,
+        id: Date.now()
+    }
+    participantArray.push(newTodoObj);
     participantInput.value = '';
-    makeParticipantList();
+    makeParticipantList(newTodoObj);
     saveParticipantList();
 }
 
@@ -78,6 +87,7 @@ participantForm.addEventListener('submit', addParticipant);
 startForm.addEventListener('submit', drawLots);
 
 if(getParticipantList){
-    participantArray = JSON.parse(getParticipantList);
-    makeParticipantList();
+    const parsedArray = JSON.parse(getParticipantList); 
+    participantArray = parsedArray;
+    participantArray.forEach(makeParticipantList);
 }

@@ -9,24 +9,22 @@
 </head>
 <body>
     <main class="wrap">
-        <h1>E</h1>
+        <h1>Lucky Draw</h1>
         <section class="layout">
             <article class="left">
-                <form id="addForm" method="post">
-                    <input type="text" placeholder="참여자명을 입력해주세요." required>
-                    <button type="submit">등록</button>
+                <form id="addForm" method="post" class="frm_layout">
+                    <input type="text" class="ip_basic" placeholder="참여자명을 입력해주세요." required>
+                    <button type="submit" class="btn_basic">등록</button>
                 </form>
-                <ul id="eventParticipant"></ul>
+                <ul class="partList" id="eventParticipant"></ul>
             </article>
     
             <article class="right">
-                <form id="lotteryForm" method="post">
-                    <input type="number" placeholder="당첨자 수">
-                    <button id="lotteryButton" type="submit">게임 시작</button>
+                <form id="lotteryForm" method="post" class="frm_layout">
+                    <input type="number" class="ip_basic" placeholder="당첨자 수">
+                    <button id="lotteryButton" type="submit" class="btn_basic">게임 시작</button>
                 </form>
-                <div id="winnerArea" class="winner_section">
-                    <h3>축하합니다.</h3>
-                </div>
+                <div id="winnerArea" class="winner_section"></div>
             </article>
         </section>
     </main>

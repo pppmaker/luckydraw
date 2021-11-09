@@ -1,0 +1,22 @@
+{
+  "name": "luckdraw",
+  "version": "1.0.0",
+  "description": "1. storage 저장 기능 추가",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pppmaker/luckydraw.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pppmaker/luckydraw/issues"
+  },
+  "homepage": "https://github.com/pppmaker/luckydraw#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
